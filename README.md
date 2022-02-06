@@ -502,6 +502,10 @@ maxPoolPreparedStatementPerConnectionSize=200
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d90b528f27e4415eb0d8b16dd584034d.png)
 
+##
+附加功能：
+Cookie 实现上次登录时间记录
+Session 实现验证码检验
 
 源码：https://github.com/Dr-LeopoldFitz/LoginPage
 
