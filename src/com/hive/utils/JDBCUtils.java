@@ -1,4 +1,4 @@
-package com.hive.util;
+package com.hive.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 

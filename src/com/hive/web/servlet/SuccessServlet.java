@@ -2,6 +2,7 @@ package com.hive.web.servlet;
 
 import com.hive.domain.User;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,8 @@ public class SuccessServlet extends HttpServlet {
             //设置编码
             response.setContentType("text/html;charset=utf-8");
             //输出
-            response.getWriter().write("登录成功！"+user.getUsername()+",欢迎您");
+            response.getWriter().write("<br><br><h1 align=\"center\">登录成功！"+"欢迎您,"+user.getUsername()+"<h1>");
+            response.getWriter().write("<br><br><h2 align=\"center\"><a href=\"/loginpage/download.html\"> Click HERE!</a><h2>");
         }
     }
 

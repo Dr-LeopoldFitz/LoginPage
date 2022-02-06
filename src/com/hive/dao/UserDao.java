@@ -1,7 +1,7 @@
 package com.hive.dao;
 
 import com.hive.domain.User;
-import com.hive.util.JDBCUtils;
+import com.hive.utils.JDBCUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

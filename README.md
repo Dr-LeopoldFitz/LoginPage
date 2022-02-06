@@ -1,4 +1,4 @@
-# JavaWeb实例：登陆界面
+# 实例：登陆界面
 
 
 ## 案例需求
@@ -387,14 +387,16 @@ public class FailServlet extends HttpServlet {
 
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/025651023f1a4f4281173375ff5005e1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQWx2ZXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/025651023f1a4f4281173375ff5005e1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQWx2ZXVz,size_20,color_FFFFFF,t_70,g_se,x_16
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/09ff21bcd4134f758a6bddb3a0db1f81.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQWx2ZXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/b88ba2c8bd4a4ce09de8b6870651e432.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQWx2ZXVz,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 
-
-<img src="https://img-blog.csdnimg.cn/17e0eebd65c74496abd576b27e5e8905.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAQWx2ZXVz,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" style="zoom: 67%;" />
 
 8. `login.html`中`form`表单的`action`路径的写法
-    * `虚拟目录+Servlet的资源路径`
+   	* `虚拟目录+Servlet的资源路径`
 
 9. 注意，mysql8 和mysql5的druid配置文件有所不同
 
@@ -460,9 +462,46 @@ maxPoolPreparedStatementPerConnectionSize=200
 
 
 3. 方法：
-   1. setProperty() //设置属性
-   2. getProperty() //获得属性
-      *3. populate(Object obj , Map map):将map集合的键值对信息，封装到对应的JavaBean对象中
+   1. `setProperty()` //设置属性
+   2. `getProperty()` //获得属性
+   3. ==`populate(Object obj , Map map)`==:将map集合的键值对信息，封装到对应的JavaBean对象中
 
 
+
+## 增加文件下载功能
+
+1. 页面显示超链接
+2. 点击超链接后弹出下载提示框
+3. 完成图片文件下载
+
+
+* 分析：
+
+1. 超链接指向的资源如果能够被浏览器解析，则在浏览器中展示，如果不能解析，则弹出下载提示框。不满足需求
+2. 任何资源都必须弹出下载提示框
+3. 使用响应头设置资源的打开方式：
+   * `content-disposition:attachment;filename=xxx`
+
+
+* 步骤：
+
+1. 定义页面，编辑超链接href属性，指向Servlet，传递资源名称filename
+2. 定义Servlet
+   1. 获取文件名称
+   2. 使用字节输入流加载文件进内存
+   3. 指定response的响应头： content-disposition:attachment;filename=xxx
+   4. 将数据写出到response输出流
+
+
+* 问题：
+
+* 中文文件问题
+  * 解决思路：
+    1. 获取客户端使用的浏览器版本信息
+    2. 根据不同的版本信息，设置filename的编码方式不同
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/d90b528f27e4415eb0d8b16dd584034d.png)
+
+
+源码：https://github.com/Dr-LeopoldFitz/LoginPage
 
